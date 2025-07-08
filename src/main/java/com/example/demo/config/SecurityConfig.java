@@ -20,16 +20,27 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable())  // Deshabilitamos CSRF para APIs REST (ajustar si quieres)
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/**").authenticated()
-                .anyRequest().permitAll()
-            )
-            .httpBasic(Customizer.withDefaults()); // Configura autenticación básica HTTP
+    http
+        .csrf(csrf -> csrf.disable()) // Deshabilitamos CSRF para APIs REST
+        .authorizeHttpRequests(auth -> auth
+            // Swagger sin autenticación
+            .requestMatchers(
+                "/swagger-ui/**",
+                "/swagger-ui.html",
+                "/v3/api-docs/**",
+                "/v3/api-docs"
+            ).permitAll()
 
-        return http.build();
-    }
+            // Tu API requiere autenticación
+            .requestMatchers("/api/**").authenticated()
+
+            // El resto de las rutas (si existen) también permitidas
+            .anyRequest().permitAll()
+        )
+        .httpBasic(Customizer.withDefaults()); // Autenticación básica HTTP
+
+    return http.build();
+}
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
