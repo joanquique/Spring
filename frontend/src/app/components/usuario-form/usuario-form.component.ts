@@ -67,23 +67,9 @@ export class UsuarioFormComponent implements OnInit {
     }, 3000); // desaparece después de 3 segundos
   }
 
-  // Lógica de alerta con error
-  alertaErrorVisible = false;
-  mensajeError = '';
-
-  mostrarError(mensaje: string) {
-    this.mensajeError = mensaje;
-    this.alertaErrorVisible = true;
-
-    setTimeout(() => {
-      this.alertaErrorVisible = false;
-    }, 3000);
-  }
-
   onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.mostrarError('Por favor, completa todos los campos requeridos correctamente.');
       return;
     }
 
