@@ -21,6 +21,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
+        .cors(Customizer.withDefaults())
         .csrf(csrf -> csrf.disable()) // Deshabilitamos CSRF para APIs REST
         .authorizeHttpRequests(auth -> auth
             // Swagger sin autenticación

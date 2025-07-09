@@ -1,0 +1,16 @@
+<button routerLink="/usuarios/nuevo">Crear Nuevo</button>
+
+<table>
+  <!-- tabla como antes -->
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td data-label="Nombre">{{ usuario.nombre }}</td>
+      <td data-label="Correo">{{ usuario.correo }}</td>
+      <td data-label="Rol">{{ usuario.rol }}</td>
+      <td data-label="Acciones">
+        <button [routerLink]="['/usuarios/editar', usuario.id]">Editar</button>
+        <button (click)="eliminarUsuario(usuario.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

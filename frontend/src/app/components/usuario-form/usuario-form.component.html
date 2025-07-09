@@ -1,0 +1,32 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>Nombre:</label>
+  <input formControlName="nombre" />
+  <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">
+    El nombre es requerido.
+  </div>
+
+  <label>Correo:</label>
+  <input formControlName="correo" />
+  <div *ngIf="form.get('correo')?.invalid && form.get('correo')?.touched">
+    Ingrese un correo válido.
+  </div>
+
+  <label>Contraseña:</label>
+  <input type="password" formControlName="contrasena" />
+  <div *ngIf="form.get('contrasena')?.invalid && form.get('contrasena')?.touched">
+    La contraseña debe tener mínimo 4 caracteres.
+  </div>
+
+  <label>Rol:</label>
+  <select formControlName="rol">
+    <option value="USER">Usuario</option>
+    <option value="ADMIN">Administrador</option>
+  </select>
+
+  <button type="submit">Guardar</button>
+</form>
+
+<!-- Alerta pequeña -->
+<div *ngIf="alertaVisible" class="alerta-pequena">
+  {{ mensajeAlerta }}
+</div>

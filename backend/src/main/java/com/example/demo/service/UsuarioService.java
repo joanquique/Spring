@@ -31,6 +31,7 @@ public class UsuarioService {
             usuario.setNombre(usuarioActualizado.getNombre());
             usuario.setCorreo(usuarioActualizado.getCorreo());
             usuario.setContrasena(usuarioActualizado.getContrasena());
+            usuario.setRol(usuarioActualizado.getRol());
             return usuarioRepository.save(usuario);
         });
     }
